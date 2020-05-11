@@ -26,17 +26,14 @@ while True:
         roi_gray=np.expand_dims(roi_gray,2)
         roi_gray = np.resize(roi_gray,(48,48,1))
         
-        #roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
-    # rect,face,image = face_detector(frame)
-
+        
 
         if np.sum([roi_gray])!=0:
             roi = roi_gray.astype('float')/255.0
             roi = np.array(roi)
             roi = np.expand_dims(roi,axis=0)
 
-        # make a prediction on the ROI, then lookup the class
-
+        
             preds = model.predict(roi)[0]
             label=class_labels[preds.argmax()]
             label_position = (x,y)
